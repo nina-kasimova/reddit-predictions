@@ -1,0 +1,60 @@
+{
+  "train_end_year": 2016,
+  "live_year": 2017,
+  "window": {
+    "months": 3,
+    "start": null,
+    "end": null,
+    "live_min_date": "2017-01-01 00:04:13",
+    "live_max_date": "2017-03-31 23:10:02"
+  },
+  "n_reference": 50869,
+  "n_live_window": 4728,
+  "drift_signals": {
+    "title_len_log": {
+      "ref_mean": 4.346220790747588,
+      "live_mean": 4.462050403750923,
+      "mean_shift": 0.11582961300333494,
+      "mean_shift_z": 0.23570942011477203,
+      "ref_std": 0.49140850181946477,
+      "live_std": 0.5284374985158946
+    },
+    "hour_of_day": {
+      "tvd_24bin": 0.04178880365508045
+    },
+    "question_mark_rate": {
+      "ref_rate": 0.8921543572706363,
+      "live_rate": 0.9101099830795262,
+      "shift": 0.017955625808889875
+    },
+    "prediction_scores": {
+      "ks": 0.08607853210025324,
+      "ref_summary": {
+        "mean": 0.3188913617018021,
+        "p10": 0.0493170008245024,
+        "p50": 0.2519314042526244,
+        "p90": 0.7099938784617852
+      },
+      "live_summary": {
+        "mean": 0.36085035275965405,
+        "p10": 0.0621562876149661,
+        "p50": 0.31566532072812425,
+        "p90": 0.7456085026213506
+      }
+    }
+  },
+  "thresholds": {
+    "title_len_mean_shift_z": 0.25,
+    "hour_tvd": 0.1,
+    "question_rate_abs_shift": 0.03,
+    "score_ks": 0.1
+  },
+  "flags": {
+    "title_len_shift": false,
+    "hour_shift": false,
+    "question_shift": false,
+    "score_shift": false
+  },
+  "should_retrain": false,
+  "note": "Drift uses pre-label signals only (features + prediction distributions)."
+}

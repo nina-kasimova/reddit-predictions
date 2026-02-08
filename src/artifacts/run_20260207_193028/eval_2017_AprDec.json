@@ -1,0 +1,13 @@
+{
+  "year": 2017,
+  "mode": "after",
+  "months_split": 3,
+  "start": null,
+  "end": null,
+  "window_min_date": "2017-04-01 00:11:55",
+  "window_max_date": "2017-12-31 23:47:23",
+  "n_samples": 14275,
+  "positive_rate": 0.12679509632224167,
+  "pr_auc": 0.2568540080750042,
+  "roc_auc": 0.6923397446552004
+}

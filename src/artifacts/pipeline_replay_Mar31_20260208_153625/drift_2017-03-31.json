@@ -1,0 +1,57 @@
+{
+  "train_end_year": 2016,
+  "live_year": 2017,
+  "as_of": "2017-03-31 00:00:00",
+  "monitor_min_date": "2017-01-01 00:04:13",
+  "monitor_max_date": "2017-03-30 23:54:18",
+  "n_reference": 50869,
+  "n_monitor": 4683,
+  "drift_signals": {
+    "title_len_log": {
+      "ref_mean": 4.346220790747588,
+      "monitor_mean": 4.462124154532219,
+      "mean_shift": 0.11590336378463117,
+      "mean_shift_z": 0.23585950050821897,
+      "ref_std": 0.49140850181946477,
+      "monitor_std": 0.5279024670771334
+    },
+    "hour_of_day": {
+      "tvd_24bin": 0.041624900044403154
+    },
+    "question_mark_rate": {
+      "ref_rate": 0.8921543572706363,
+      "monitor_rate": 0.9101003630151612,
+      "shift": 0.017946005744524873
+    },
+    "prediction_scores": {
+      "ks": 0.08575319688213467,
+      "ref_summary": {
+        "mean": 0.3188913617018021,
+        "p10": 0.0493170008245024,
+        "p50": 0.2519314042526244,
+        "p90": 0.7099938784617852
+      },
+      "monitor_summary": {
+        "mean": 0.36092852471475284,
+        "p10": 0.06247249107714696,
+        "p50": 0.31570179894802786,
+        "p90": 0.7453473723141827
+      }
+    }
+  },
+  "thresholds": {
+    "title_len_mean_shift_z": 0.25,
+    "hour_tvd": 0.1,
+    "question_rate_abs_shift": 0.03,
+    "score_ks": 0.1
+  },
+  "flags": {
+    "title_len_shift": false,
+    "hour_shift": false,
+    "question_shift": false,
+    "score_shift": false
+  },
+  "should_retrain": false,
+  "note": "Drift uses pre-label-style signals (features + prediction distributions).",
+  "model_used": "baseline_reference_only"
+}

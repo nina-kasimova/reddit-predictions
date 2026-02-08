@@ -1,0 +1,20 @@
+{
+  "train_end_year": 2016,
+  "live_year": 2017,
+  "as_of": "2017-06-30 00:00:00",
+  "future_min_date": "2017-06-30 00:43:11",
+  "future_max_date": "2017-12-31 23:47:23",
+  "model_used": "retrained_on_reference_plus_monitor",
+  "internal_val_metrics": {
+    "n_samples": 12044,
+    "positive_rate": 0.10677515775489871,
+    "pr_auc": 0.22776105403616548,
+    "roc_auc": 0.7177945914313975
+  },
+  "future_eval_metrics": {
+    "n_samples": 9655,
+    "positive_rate": 0.12366649404453652,
+    "pr_auc": 0.2592668052388311,
+    "roc_auc": 0.7021104023050286
+  }
+}

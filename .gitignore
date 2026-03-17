@@ -9,6 +9,7 @@ mlflow.db
 .DS_Store
 src/.DS_Store
 src/data/.DS_Store
+*.png
 
 # Python
 __pycache__/

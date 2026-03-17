@@ -13,7 +13,7 @@ The project started as a local machine learning workflow with notebooks, Python 
 - a separate Kubernetes `Job` for model training
 - an MLflow server running in Kubernetes
 
-The goal is not to build a large-scale production platform. The goal is to create a realistic, interview-friendly system that demonstrates:
+The goal is not to build a large-scale production platform. The goal is to create a realistic system that demonstrates:
 
 - supervised model training
 - feature engineering

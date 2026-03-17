@@ -222,7 +222,7 @@ They are intentionally simple and interpretable:
 - title style and structure may correlate with performance
 - flair and universe tags provide useful categorical context
 
-This keeps the project understandable and easy to explain in an interview.
+This keeps the project understandable and easy to explain in an .
 
 ## Model
 
@@ -293,14 +293,6 @@ The code uses simple threshold rules:
 - `score_ks > 0.10`
 
 If any threshold is exceeded, `should_retrain = true`.
-
-### Why threshold-based rules instead of a more advanced approach?
-
-Because this is a small, explainable system. In interviews, simple policies are often better than complicated ones if you can justify them clearly.
-
-This lets you say:
-
-> We used interpretable drift checks as operational policy knobs, and if any of them crossed a threshold, we retrained.
 
 ## Retraining Logic
 
@@ -682,13 +674,6 @@ Generated files you usually should not treat as source of truth:
 - screenshots and exported report images
 - notebook checkpoints
 
-This distinction matters in interviews too, because it shows you understand:
-
-- what is configuration
-- what is application code
-- what is persistent state
-- what is generated output
-
 ## End-to-End Example Flow
 
 Here is one concrete scenario.
@@ -946,20 +931,11 @@ Current limitations include:
 - the serving API uses a single model file with no model registry promotion flow
 - authentication and authorization are not implemented
 
-## What Would Be a Good Next Step
 
 The most natural next improvements would be:
 
 1. add a Kubernetes `Job` or `CronJob` for drift replay
 2. move serving model storage from PVC to object storage
 3. add a model registry or explicit "promote model" step
-4. add tests for feature engineering and API inference
-5. add a small architecture slide or diagram for interview presentation
+4. add tests for feature engineering and API inferencen
 
-## Interview Framing
-
-A concise interview summary for this project would be:
-
-> I started with a notebook-style Reddit popularity model and turned it into a small MLOps system. Historical data through 2016 is used for training, 2017 is used to simulate live monitoring, drift is detected using feature and score-based signals, MLflow tracks runs and artifacts, Evidently provides visual drift reports, and the system now runs locally on Kubernetes with separate workloads for serving, training, and experiment tracking.
-
-That is the main value of this repository: not just a model, but a model plus an operating story.

@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: train-model
+  namespace: reddit-ml
+spec:
+  backoffLimit: 1
+  template:
+    metadata:
+      labels:
+        app: train-model
+    spec:
+      restartPolicy: Never
+      volumes:
+        - name: model-storage
+          persistentVolumeClaim:
+            claimName: reddit-model-storage
+      containers:
+        - name: trainer
+          image: reddit-api:local
+          imagePullPolicy: IfNotPresent
+          command: ["python", "-m", "src.train_serving_model"]
+          args:
+            - "--reference-data"
+            - "posts-to-2016.parquet"
+            - "--output-model"
+            - "/models/model.joblib"
+            - "--output-metadata"
+            - "/models/model_metadata.json"
+          volumeMounts:
+            - name: model-storage
+              mountPath: /models

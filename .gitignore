@@ -4,3 +4,28 @@
 # MLflow
 mlruns/
 mlflow.db
+
+# macOS / editor
+.DS_Store
+src/.DS_Store
+src/data/.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Local MLflow state
+mlruns/
+mlflow.db
+
+# Generated run outputs
+artifacts/
+src/artifacts/
+drift_report.html
+
+# Notebook checkpoints / scratch
+.ipynb_checkpoints/
+Untitled1.ipynb
+
+# Local archives
+src/Archive.zip

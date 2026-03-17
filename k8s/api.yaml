@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reddit-api
+  namespace: reddit-ml
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reddit-api
+  template:
+    metadata:
+      labels:
+        app: reddit-api
+    spec:
+      volumes:
+        - name: model-storage
+          persistentVolumeClaim:
+            claimName: reddit-model-storage
+      containers:
+        - name: api
+          image: reddit-api:local
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MODEL_PATH
+              value: /models/model.joblib
+            - name: MODEL_METADATA_PATH
+              value: /models/model_metadata.json
+          ports:
+            - containerPort: 8000
+              name: http
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          volumeMounts:
+            - name: model-storage
+              mountPath: /models
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reddit-api
+  namespace: reddit-ml
+spec:
+  selector:
+    app: reddit-api
+  ports:
+    - name: http
+      port: 8000
+      targetPort: http

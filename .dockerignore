@@ -1,0 +1,16 @@
+.git
+.idea
+.ipynb_checkpoints
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+mlruns
+artifacts
+drift_report.html
+*.png
+*.ipynb
+src/Archive.zip
+src/.DS_Store
+src/data/.DS_Store

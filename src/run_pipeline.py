@@ -20,6 +20,7 @@ Artifacts saved into a NEW run folder:
 from __future__ import annotations
 
 import argparse
+import os
 import json
 from dataclasses import asdict
 from datetime import datetime
@@ -220,6 +221,8 @@ def main():
     parser.add_argument("--data", default="src/data/processed/posts.parquet")
     parser.add_argument("--train_end_year", type=int, default=2016)
     parser.add_argument("--live_year", type=int, default=2017)
+    parser.add_argument("--mlflow-uri", default=None, help="Optional MLflow tracking URI. Falls back to MLFLOW_TRACKING_URI env var.")
+    parser.add_argument("--experiment-name", default="Reddit_Popularity", help="MLflow experiment name.")
 
 
     parser.add_argument("--as-of", required=True, help="Replay 'current date' within live year. Example: 2017-03-31")
@@ -240,13 +243,17 @@ def main():
         live_year=args.live_year,
     )
 
+    tracking_uri = args.mlflow_uri or os.getenv("MLFLOW_TRACKING_URI")
+    if tracking_uri:
+        mlflow.set_tracking_uri(tracking_uri)
+
     # Load + feature + label
     df = pd.read_parquet(cfg.data_path)
     df = build_features(df)
     df = label_popularity(df, train_end_year=cfg.train_end_year)
     df = _ensure_datetime(df)
 
-    mlflow.set_experiment("Reddit_Popularity")
+    mlflow.set_experiment(args.experiment_name)
 
     with mlflow.start_run(run_name=f"AsOf_{args.as_of}"):
 
@@ -320,6 +327,7 @@ def main():
 
         # Evaluate on future window (what happens after as-of)
         future_eval = eval_on(future, final_model)
+        baseline_future_eval = eval_on(future, baseline_model)
 
         mlflow.log_param("model_decision", model_type)
         mlflow.log_metrics({

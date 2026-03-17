@@ -89,7 +89,6 @@ def main():
     parser.add_argument("--run-dir", required=True)
     parser.add_argument("--out-name", default="drift_2017.json")
 
-    # Live simulation knobs
     parser.add_argument("--months", type=int, default=None, help="Use only first N months of live year (e.g. 3 = Jan–Mar)")
     parser.add_argument("--start", type=str, default=None, help="Optional explicit start date (YYYY-MM-DD)")
     parser.add_argument("--end", type=str, default=None, help="Optional explicit end date (YYYY-MM-DD)")

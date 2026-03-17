@@ -387,36 +387,7 @@ Because it was still basically a manually managed machine:
 - deployment was operationally manual
 - there was no Kubernetes-style distinction between long-running services and one-off batch jobs
 
-That setup was a good first cloud step, but not yet a strong infrastructure story by itself.
 
-## What We Changed Now
-
-This repository was extended with a more structured local platform.
-
-### New additions
-
-- [`requirements.txt`](/Users/nina/Desktop/py/projects/reddit/requirements.txt)
-  - makes dependencies explicit and reproducible
-
-- [`Dockerfile`](/Users/nina/Desktop/py/projects/reddit/Dockerfile)
-  - packages the application into a container image
-
-- [`api.py`](/Users/nina/Desktop/py/projects/reddit/src/api.py)
-  - adds a real serving layer
-
-- [`train_serving_model.py`](/Users/nina/Desktop/py/projects/reddit/src/train_serving_model.py)
-  - trains a serving model from historical data only
-
-- Kubernetes manifests in [`k8s/`](/Users/nina/Desktop/py/projects/reddit/k8s)
-  - namespace
-  - model PVC
-  - MLflow deployment
-  - FastAPI deployment
-  - model training job
-
-### Why these changes matter
-
-They turn the project from a script collection into a small platform with clear workload boundaries.
 
 ## Why Training Was Moved Out of the API Pod
 
